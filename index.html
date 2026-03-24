@@ -1,702 +1,457 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Leon Qu - Software Developer Portfolio">
+  <meta name="author" content="Leon Qu">
+  <title>Leon Qu</title>
 
-  <head>
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Custom styles -->
+  <link href="css/portfolio.css" rel="stylesheet">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106150954-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-106150954-2');
+  </script>
+</head>
+<body>
 
-    <title>Leon Qu</title>
+  <!-- ===== Navigation ===== -->
+  <nav id="navbar">
+    <div class="nav-logo">LQ</div>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#about" class="nav-link active">About</a></li>
+      <li><a href="#projects" class="nav-link">Projects</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#education" class="nav-link">Education</a></li>
+      <li><a href="#skills" class="nav-link">Skills</a></li>
+      <li><a href="#awards" class="nav-link">Awards</a></li>
+    </ul>
+  </nav>
 
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="vendor/devicons/css/devicons.min.css" rel="stylesheet">
-    <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/resume.css" rel="stylesheet">
-    
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106150954-2"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-106150954-2');
-    </script>
-    
-  </head>
-
-  <body id="page-top">
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">
-        <span class="d-block d-lg-none">Leon Qu</span>
-        <span class="d-none d-lg-block">
-          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="img/profile1.png" alt="">
-        </span>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#projects">Projects</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#experience">Experience</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#education">Education</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#skills">Skills</a>
-          <!-- </li><li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#interests">Interests</a>
-          </li> -->
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#awards">Awards</a>
-          </li>
-        </ul>
+  <!-- ===== Hero / About ===== -->
+  <section id="about" class="section hero-section">
+    <canvas id="neural-canvas"></canvas>
+    <div class="hero-content reveal">
+      <p class="hero-greeting mono">Hello, I'm</p>
+      <h1 class="hero-name">Leon <span class="accent">Qu</span></h1>
+      <div class="hero-typing-wrapper">
+        <span class="mono" id="typed-output"></span><span class="typed-cursor">|</span>
       </div>
-    </nav>
-
-    <div class="container-fluid p-0">
-
-      <section class="resume-section p-3 p-lg-5 d-flex d-column" id="about">
-        <div class="my-auto">
-          <h1 class="mb-0">Leon
-            <span class="text-primary">Qu</span>
-          </h1>
-          <div class="subheading mb-5">Portland, OR
-            <a href="mailto:leonjrqu@gmail.com">leonjrqu@gmail.com</a>
-          </div>
-          <p class="mb-5">I am an software developer with an obsession for efficiency and elegant solutions with a focus on data science and automation.
-            <br>
-            <br>
-           Proven ability to deliver effective and secure software. My current interests are in machine learning and semiconductor manufacturing automation.
-          </p>
-          <ul class="list-inline list-social-icons mb-0">
-            <li class="list-inline-item">
-              <a href="https://www.linkedin.com/in/leonqu/">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="https://github.com/qu-leon">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-    <!-- Portfolio Grid Section -->
-
-
-    <section class="portfolio resume-section p-3 p-lg-5 d-flex d-column" id="projects">
-      <div class="">
-        <h2 class="mb-5"> Projects</h2>
-        <div class="row">
-
-          <div class="col-md-6 col-lg-4 text-center mb-5">
-              <img class="img-fluid" src="img/intel_logo.png" alt="">
-              <button style="margin: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#autopd">
-                AutoPD
-              </button>
-          </div>
-
-                <!-- Modal -->
-          <div class="modal fade" id="autopd" tabindex="-1" role="dialog" aria-labelledby="autopd" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">AutoPD</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body text-left">
-                <img class="img-fluid" src="img/intel_logo.png" alt="">
-                  <div class="row">
-                    <div class="col-4">
-                      <div style="padding-left: 10px" class="subheading mb-3">Techstack</div>
-                      <ul class="fa-ul text-left">
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Python</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Intel PyUber library</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Numpy</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Pandas</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          BeautifulSoup</li>
-                      </ul>
-                    </div>
-
-                    <div class="col-8">
-                      <div class="subheading mb-3">Description</div>
-                        <p> Python script with simple GUI that assists with automating the time-consuming process of manually modifying data and creating numerous tables daily for morning passdown meetings and emails. 
-                        <br><br>
-                        After implementation, our team members have cut down time spent on the task from 45-50 min to about 5-10 min depending on any additional comments that they wish to add.
-
-                        </p>
-                    </div>
-                </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-4 text-center mb-5">
-            <img class="img-fluid" src="img/intel_logo.png" alt="">
-            <button style="margin: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#autofte">
-              AutoFTE
-            </button>
-          </div>
-
-          <!-- Modal -->
-          <div class="modal fade" id="autofte" tabindex="-1" role="dialog" aria-labelledby="autofte" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">AutoFTE</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body text-left">
-                <img class="img-fluid" src="img/intel_logo.png" alt="">
-                  <div class="row">
-                    <div class="col-4">
-                      <div style="padding-left: 10px" class="subheading mb-3">Techstack</div>
-                      <ul class="fa-ul text-left">
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Python</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Intel PyUber library</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Numpy</li>
-                      </ul>
-                    </div>
-
-                    <div class="col-8">
-                      <div class="subheading mb-3">Description</div>
-                        <p> Python script with simple GUI that assists with automating the time-consuming process of manually modifying data to create an Excel spreadsheet with relevant data.
-
-                        <br> <br>
-                        It was designed to automatically pull all factory data from company servers in order to be utilized for team purposes.
-
-                        </p>
-                    </div>
-                </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- <div class="col-md-6 col-lg-4 text-center mb-5">
-              <img class="img-fluid" src="img/demeter.png" alt="">
-              <button style="margin: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#demeter">
-                Demeter
-              </button>
-          </div> -->
-
-          <!-- Modal -->
-          <div class="modal fade" id="demeter" tabindex="-1" role="dialog" aria-labelledby="demeter" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Demeter</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body text-left">
-                <img class="img-fluid" src="img/demeter.png" alt="">
-                  <div class="row">
-                    <div class="col-4">
-                      <div style="padding-left: 10px" class="subheading mb-3">Techstack</div>
-                      <ul class="fa-ul text-left">
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Meteor</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Raspberry Pi</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Sensors</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          AT&amp;T M2X</li>
-                      </ul>
-                    </div>
-
-                    <div class="col-8">
-                      <div class="subheading mb-3">Description</div>
-                        Created a gamified plant monitoring system equipped with a Raspberry Pi along with light, temperature, and humidity sensors. Developed for the 2017 AT&amp;T Hackathon in Honolulu, and ultimately won 2/8 total awards.
-                    </div>
-                </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- <div class="col-md-6 col-lg-4 text-center mb-5">
-              <img class="img-fluid" src="img/snip.png" alt="">
-              <button style="margin: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#snip">
-                Snip
-              </button>
-          </div> -->
-
-          <!-- Modal -->
-          <div class="modal fade" id="snip" tabindex="-1" role="dialog" aria-labelledby="snip" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Snip</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body text-left">
-                <img class="img-fluid" src="img/snip.png" alt="">
-                  <div class="row">
-                    <div class="col-4">
-                      <div style="padding-left: 10px" class="subheading mb-3">Techstack</div>
-                      <ul class="fa-ul text-left">
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Ionic</li>
-                      </ul>
-                    </div>
-
-                    <div class="col-8">
-                      <div class="subheading mb-3">Description</div>
-                        <p> Designed and developed this project to facilitate the process of learning Data Structures and Algorithms on the go. Used the critical path algorithm to calculate the best possible path to spread snippets to create each day to assure mastery of a particular subject. 
-
-                        <br><br>
-                        Incorporated functionality to create, save and edit code snippets through the app. </p>
-                    </div>
-                </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- <div class="col-md-6 col-lg-4 text-center mb-5">
-              <img class="img-fluid" src="img/tyler.png" alt="">
-              <button type="button" style="margin: 10px" class="btn btn-primary" data-toggle="modal" data-target="#tyler">
-                Tyler's Portfolio
-              </button>
-          </div> -->
-
-          <!-- Modal -->
-          <div class="modal fade" id="tyler" tabindex="-1" role="dialog" aria-labelledby="tyler" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Tyler's Portfolio</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body text-left">
-                <img class="img-fluid" src="img/tyler.png" alt="">
-                  <div class="row">
-                    <div class="col-4">
-                      <div style="padding-left: 10px" class="subheading mb-3">Techstack</div>
-                      <ul class="fa-ul text-left">
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Angular</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Django</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Bootstrap</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          AWS EC2</li>
-                      </ul>
-                    </div>
-
-                    <div class="col-8">
-                      <div class="subheading mb-3">Description</div>
-                        <p> Designed, modeled, developed and deployed a portfolio web application for a friend to easily be able to update and maintain by himself through a content management system. Decided to make this to teach myself Angular and Django Rest Framework, while improving my frontend skills. 
-                        </p>
-                    </div>
-                </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- <div class="col-md-6 col-lg-4 text-center mb-5">
-              <img class="img-fluid" src="img/carmadriven.png" alt="">
-              <button style="margin: 10px" type="button" class="btn btn-primary" data-toggle="modal" data-target="#carmadriven">
-                CarmaDriven
-              </button>
-          </div> -->
-
-          <!-- Modal -->
-          <div class="modal fade" id="carmadriven" tabindex="-1" role="dialog" aria-labelledby="carmadriven" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">CarmaDriven</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                  <div class="modal-body text-left">
-                <img class="img-fluid" src="img/carmadriven.png" alt="">
-                  <div class="row">
-                    <div class="col-4">
-                      <div style="padding-left: 10px" class="subheading mb-3">Techstack</div>
-                      <ul class="fa-ul text-left">
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Ionic</li>
-                        <li>
-                          <i class="fa-li fa fa-check"></i>
-                          Microsoft Cognitive Services</li>
-                      </ul>
-                    </div>
-
-                    <div class="col-8">
-                      <div class="subheading mb-3">Description</div>
-                        <p> Developed at the University of Washington's Dubhacks 2017. Mobile app designed to aid users with driving (co-pilot). Using Microsoft Cogntive Services, this app lets users know if they are near stop signs, traffic lights, and even pedestrians.
-                        <br><br>
-                        Received 1st Place Runner-Up for Challenge 1 that contained over 40 teams.
-                         </p>
-                    </div>
-                </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
+      <p class="hero-bio">
+        I am a software developer with an obsession for efficiency and elegant solutions with a focus on data science and automation.
+      </p>
+      <p class="hero-bio">
+        Proven ability to deliver effective and secure software. My current interests are in machine learning and semiconductor manufacturing automation.
+      </p>
+      <div class="hero-location mono">
+        <i class="fa fa-map-marker"></i> Portland, OR &nbsp;&middot;&nbsp;
+        <a href="mailto:leonjrqu@gmail.com">leonjrqu@gmail.com</a>
       </div>
-
-    </section>
-
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="experience">
-        <div class="my-auto">
-          <h2 class="mb-5">Experience</h2>
-          
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Integration & Yield Engineer Technician</h3>
-              <div class="subheading mb-3">Intel</div>
-              <p>
-                • Designed and implemented reusable Python/SQL validation tooling that automated repetitive checks and reduced manual verification effort by 90%.<br>
-                • Collaborated with cross-functional engineering teams to reproduce failures, isolate root causes, and deploy corrective actions for recurring integration defects.<br>
-                • Authored technical documentation for process updates, configuration changes, and workflow logic to improve traceability and maintainability.<br>
-                • Led end-to-end validation execution for factory automation and manufacturing data pipelines.
-              </p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">Nov 2022 - Present</span>
-            </div>
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Operations Manufacturing Technician</h3>
-              <div class="subheading mb-3">Intel</div>
-              <p>
-                • Validated production automation and data interfaces to maintain process consistency, system reliability, and data integrity.<br>
-                • Performed root cause analysis on process failures and implemented best known methods (BKMs) to reduce downtime.<br>
-                • Standardized operational documentation and KPI reporting to improve performance visibility and quality tracking.
-              </p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">Dec 2020 - Oct 2022</span>
-            </div>
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">AI Data Trainer </h3>
-              <div class="subheading mb-3">Invisible Technologies</div>
-              <p>
-                • Evaluated Python/Java code datasets against quality and correctness criteria to improve logical consistency and dataset reliability.<br>
-                • Applied structured defect-review and bug-triage methodologies to surface failure patterns and improve annotation quality.
-              </p>
-            </div>
-
-            <div class="resume-date text-md-right">
-              <span class="text-primary">Apr 2024 - May 2025</span>
-            </div>
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Full Stack Software Engineer Intern</h3>
-              <div class="subheading mb-3">Leadwest Education</div>
-              <p>
-                • Engineered and maintained company web pages as the sole developer using React (frontend) and Node.js (backend).<br>
-                • Produced and integrated digital educational content to increase online engagement and audience growth.
-              </p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">Aug 2019 - Dec 2019</span>
-            </div>
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Research Assistant</h3>
-              <div class="subheading mb-3">University of Hawaii at Manoa Research</div>
-              <p>
-                • Conducted geospatial coastline analysis using Google Earth and California coastline datasets to identify shoreline recession trends.<br>
-                • Built weekly Python-based data processing workflows (Pandas, NumPy) to normalize observations and report trend insights.
-              </p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">Nov 2018 - Jan 2019</span>
-            </div>
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Data Science Intern</h3>
-              <div class="subheading mb-3">Sheila Donnelly & Associates</div>
-              <p>
-                • Cleansed and restructured a 2,000+ record company database to eliminate data discrepancies and improve data quality.<br>
-                • Automated contact-ingestion workflows with SQL and MongoDB scripting to reduce manual entry and improve processing efficiency.
-              </p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">Feb 2017 - Jun 2017</span>
-            </div>
-          </div>
-
-        </div>
-
-      </section>
-
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="education">
-        <div class="my-auto">
-          <h2 class="mb-5">Education</h2>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">University Hawai'i at Manoa</h3>
-              <br>
-              <div class="subheading mb-3">Computer Science</div>
-              <div>Bachelor of Science</div>
-              <br>
-              <div class="subheading mb-3">Chinese Lanaguage</div>
-              <div>Bachelor of Art</div>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">Aug 2014 - Dec 2019</span>
-            </div>
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Nanjing University</h3>
-              <div class="subheading mb-3">Chinese Flagship Capstone</div>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">Jan 2019 - Dec 2019</span>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="skills">
-        <div class="my-auto">
-          <h2 class="mb-5">Skills</h2>
-      <div class="row">
-      <div class="col-6">
-          <div class="subheading mb-3">Programming Languages</div>
-          <ul class="fa-ul mb-0">
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Python</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              JavaScript</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              SQL</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Java</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              C/C++</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              HTML/CSS</li>
-          </ul>
-          <br>
-          <div class="subheading mb-3">Frameworks and Technologies</div>
-          <ul class="fa-ul mb-0">
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Angular</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Django</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Flask</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Node.js</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Unity</li>
-          </ul>
-          <br>
-          <div class="subheading mb-3">Specialization</div>
-          <ul class="fa-ul mb-0">
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Information Retrieval and Distribution</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Agile Development &amp; Scrum</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Software Architecture &amp; Software Design</li>
-          </ul>
-        </div>
-
-              <div class="col-6">
-          <div class="subheading mb-3">Databases</div>
-          <ul class="fa-ul mb-0">
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              MongoDB</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              AWS DynamoDB</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Microsoft SQL Server</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              PostgreSQL</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              MySQL</li>
-
-          </ul>
-          <br>
-          <div class="subheading mb-3">Toolsets</div>
-          <ul class="fa-ul mb-0">
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Visual Studio</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              Eclipse</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              IntelliJ IDEA</li>
-            <li>
-              <i class="fa-li fa fa-check"></i>
-              PyCharm</li>
-          </ul>
-        </div>
-
-        </div>
-        </div>
-      </section>
-
-      <!-- <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="interests">
-        <div class="my-auto">
-          <h2 class="mb-5">Interests</h2>
-          <p class="mb-3">Although most of my time is spent coding, I genuinely love to continue to spend my free time exploring new technology and creating software with friends. </p>
-          <p class="mb-3"> My latest interests include theory on maintainable software architecture, design, and clean code. </p>
-          <p class="mb-3">Aside from coding, I enjoy fashion, investing, and eating food (doesnt everyone?).  </p>
-        </div>
-      </section> -->
-
-      <section class="resume-section p-3 p-lg-5 d-flex flex-column" id="awards">
-        <div class="my-auto">
-          <h2 class="mb-5">Awards</h2>
-          <ul class="fa-ul mb-0">
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              Benjamin A. Gilman Internationl Scholarship & Critical Language Scholarship - 2019</li>
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              2<sup>nd</sup> Place - Language Flagship Technology Innovation Center - Flagship Hackathon 2018 </li>
-            <li>
-              <i class="fa-li fa fa-trophy text-warning"></i>
-              Green Ideas Best Team Award & Green Ideas Innovator Award 2018 - Language Flagship Technology Innovation Center</li>
-          </ul>
-        </div>
-      </section>
-
+      <div class="hero-socials">
+        <a href="https://www.linkedin.com/in/leonqu/" class="social-btn" aria-label="LinkedIn">
+          <i class="fa fa-linkedin"></i>
+        </a>
+        <a href="https://github.com/qu-leon" class="social-btn" aria-label="GitHub">
+          <i class="fa fa-github"></i>
+        </a>
+      </div>
     </div>
+    <div class="scroll-indicator">
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+      <span class="mono">scroll</span>
+    </div>
+  </section>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- ===== Projects ===== -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title reveal"><span class="accent mono">02.</span> Projects</h2>
+      <div class="projects-grid">
 
-    <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- AutoPD -->
+        <div class="project-card reveal" data-project="autopd">
+          <div class="project-card-header">
+            <div class="project-icon"><i class="fa fa-folder-open"></i></div>
+            <div class="project-links">
+              <span class="project-tag">Automation</span>
+            </div>
+          </div>
+          <h3 class="project-title">AutoPD</h3>
+          <p class="project-desc">Python script with simple GUI that assists with automating the time-consuming process of manually modifying data and creating numerous tables daily for morning passdown meetings and emails.</p>
+          <p class="project-desc">After implementation, our team members have cut down time spent on the task from 45-50 min to about 5-10 min depending on any additional comments that they wish to add.</p>
+          <ul class="project-tech">
+            <li>Python</li>
+            <li>Intel PyUber</li>
+            <li>Numpy</li>
+            <li>Pandas</li>
+            <li>BeautifulSoup</li>
+          </ul>
+        </div>
 
-    <!-- Custom scripts for this template -->
-    <script src="js/resume.min.js"></script>
+        <!-- AutoFTE -->
+        <div class="project-card reveal" data-project="autofte">
+          <div class="project-card-header">
+            <div class="project-icon"><i class="fa fa-folder-open"></i></div>
+            <div class="project-links">
+              <span class="project-tag">Automation</span>
+            </div>
+          </div>
+          <h3 class="project-title">AutoFTE</h3>
+          <p class="project-desc">Python script with simple GUI that assists with automating the time-consuming process of manually modifying data to create an Excel spreadsheet with relevant data.</p>
+          <p class="project-desc">It was designed to automatically pull all factory data from company servers in order to be utilized for team purposes.</p>
+          <ul class="project-tech">
+            <li>Python</li>
+            <li>Intel PyUber</li>
+            <li>Numpy</li>
+          </ul>
+        </div>
 
-  </body>
+        <!-- Demeter -->
+        <div class="project-card reveal" data-project="demeter">
+          <div class="project-card-header">
+            <div class="project-icon"><i class="fa fa-folder-open"></i></div>
+            <div class="project-links">
+              <span class="project-tag">IoT / Hackathon</span>
+            </div>
+          </div>
+          <h3 class="project-title">Demeter</h3>
+          <p class="project-desc">Created a gamified plant monitoring system equipped with a Raspberry Pi along with light, temperature, and humidity sensors. Developed for the 2017 AT&amp;T Hackathon in Honolulu, and ultimately won 2/8 total awards.</p>
+          <ul class="project-tech">
+            <li>Meteor</li>
+            <li>Raspberry Pi</li>
+            <li>Sensors</li>
+            <li>AT&amp;T M2X</li>
+          </ul>
+        </div>
 
+        <!-- Snip -->
+        <div class="project-card reveal" data-project="snip">
+          <div class="project-card-header">
+            <div class="project-icon"><i class="fa fa-folder-open"></i></div>
+            <div class="project-links">
+              <span class="project-tag">Mobile App</span>
+            </div>
+          </div>
+          <h3 class="project-title">Snip</h3>
+          <p class="project-desc">Designed and developed this project to facilitate the process of learning Data Structures and Algorithms on the go. Used the critical path algorithm to calculate the best possible path to spread snippets to create each day to assure mastery of a particular subject.</p>
+          <p class="project-desc">Incorporated functionality to create, save and edit code snippets through the app.</p>
+          <ul class="project-tech">
+            <li>Ionic</li>
+          </ul>
+        </div>
+
+        <!-- Tyler's Portfolio -->
+        <div class="project-card reveal" data-project="tyler">
+          <div class="project-card-header">
+            <div class="project-icon"><i class="fa fa-folder-open"></i></div>
+            <div class="project-links">
+              <span class="project-tag">Full Stack</span>
+            </div>
+          </div>
+          <h3 class="project-title">Tyler's Portfolio</h3>
+          <p class="project-desc">Designed, modeled, developed and deployed a portfolio web application for a friend to easily be able to update and maintain by himself through a content management system. Decided to make this to teach myself Angular and Django Rest Framework, while improving my frontend skills.</p>
+          <ul class="project-tech">
+            <li>Angular</li>
+            <li>Django</li>
+            <li>Bootstrap</li>
+            <li>AWS EC2</li>
+          </ul>
+        </div>
+
+        <!-- CarmaDriven -->
+        <div class="project-card reveal" data-project="carmadriven">
+          <div class="project-card-header">
+            <div class="project-icon"><i class="fa fa-folder-open"></i></div>
+            <div class="project-links">
+              <span class="project-tag">ML / Hackathon</span>
+            </div>
+          </div>
+          <h3 class="project-title">CarmaDriven</h3>
+          <p class="project-desc">Developed at the University of Washington's Dubhacks 2017. Mobile app designed to aid users with driving (co-pilot). Using Microsoft Cognitive Services, this app lets users know if they are near stop signs, traffic lights, and even pedestrians.</p>
+          <p class="project-desc">Received 1st Place Runner-Up for Challenge 1 that contained over 40 teams.</p>
+          <ul class="project-tech">
+            <li>Ionic</li>
+            <li>Microsoft Cognitive Services</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Experience ===== -->
+  <section id="experience" class="section">
+    <div class="container">
+      <h2 class="section-title reveal"><span class="accent mono">03.</span> Experience</h2>
+      <div class="timeline">
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Integration &amp; Yield Engineer Technician</h3>
+                <span class="timeline-company">Intel</span>
+              </div>
+              <span class="timeline-date mono">Nov 2022 - Present</span>
+            </div>
+            <ul class="timeline-details">
+              <li>Designed and implemented reusable Python/SQL validation tooling that automated repetitive checks and reduced manual verification effort by 90%.</li>
+              <li>Collaborated with cross-functional engineering teams to reproduce failures, isolate root causes, and deploy corrective actions for recurring integration defects.</li>
+              <li>Authored technical documentation for process updates, configuration changes, and workflow logic to improve traceability and maintainability.</li>
+              <li>Led end-to-end validation execution for factory automation and manufacturing data pipelines.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Operations Manufacturing Technician</h3>
+                <span class="timeline-company">Intel</span>
+              </div>
+              <span class="timeline-date mono">Dec 2020 - Oct 2022</span>
+            </div>
+            <ul class="timeline-details">
+              <li>Validated production automation and data interfaces to maintain process consistency, system reliability, and data integrity.</li>
+              <li>Performed root cause analysis on process failures and implemented best known methods (BKMs) to reduce downtime.</li>
+              <li>Standardized operational documentation and KPI reporting to improve performance visibility and quality tracking.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>AI Data Trainer</h3>
+                <span class="timeline-company">Invisible Technologies</span>
+              </div>
+              <span class="timeline-date mono">Apr 2024 - May 2025</span>
+            </div>
+            <ul class="timeline-details">
+              <li>Evaluated Python/Java code datasets against quality and correctness criteria to improve logical consistency and dataset reliability.</li>
+              <li>Applied structured defect-review and bug-triage methodologies to surface failure patterns and improve annotation quality.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Full Stack Software Engineer Intern</h3>
+                <span class="timeline-company">Leadwest Education</span>
+              </div>
+              <span class="timeline-date mono">Aug 2019 - Dec 2019</span>
+            </div>
+            <ul class="timeline-details">
+              <li>Engineered and maintained company web pages as the sole developer using React (frontend) and Node.js (backend).</li>
+              <li>Produced and integrated digital educational content to increase online engagement and audience growth.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Research Assistant</h3>
+                <span class="timeline-company">University of Hawaii at Manoa Research</span>
+              </div>
+              <span class="timeline-date mono">Nov 2018 - Jan 2019</span>
+            </div>
+            <ul class="timeline-details">
+              <li>Conducted geospatial coastline analysis using Google Earth and California coastline datasets to identify shoreline recession trends.</li>
+              <li>Built weekly Python-based data processing workflows (Pandas, NumPy) to normalize observations and report trend insights.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <div class="timeline-header">
+              <div>
+                <h3>Data Science Intern</h3>
+                <span class="timeline-company">Sheila Donnelly &amp; Associates</span>
+              </div>
+              <span class="timeline-date mono">Feb 2017 - Jun 2017</span>
+            </div>
+            <ul class="timeline-details">
+              <li>Cleansed and restructured a 2,000+ record company database to eliminate data discrepancies and improve data quality.</li>
+              <li>Automated contact-ingestion workflows with SQL and MongoDB scripting to reduce manual entry and improve processing efficiency.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Education ===== -->
+  <section id="education" class="section">
+    <div class="container">
+      <h2 class="section-title reveal"><span class="accent mono">04.</span> Education</h2>
+      <div class="education-grid">
+
+        <div class="edu-card reveal">
+          <div class="edu-icon"><i class="fa fa-graduation-cap"></i></div>
+          <h3>University Hawai'i at Manoa</h3>
+          <div class="edu-degrees">
+            <div class="edu-degree">
+              <span class="edu-field">Computer Science</span>
+              <span class="edu-type">Bachelor of Science</span>
+            </div>
+            <div class="edu-degree">
+              <span class="edu-field">Chinese Language</span>
+              <span class="edu-type">Bachelor of Art</span>
+            </div>
+          </div>
+          <span class="edu-date mono">Aug 2014 - Dec 2019</span>
+        </div>
+
+        <div class="edu-card reveal">
+          <div class="edu-icon"><i class="fa fa-graduation-cap"></i></div>
+          <h3>Nanjing University</h3>
+          <div class="edu-degrees">
+            <div class="edu-degree">
+              <span class="edu-field">Chinese Flagship Capstone</span>
+            </div>
+          </div>
+          <span class="edu-date mono">Jan 2019 - Dec 2019</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Skills ===== -->
+  <section id="skills" class="section">
+    <div class="container">
+      <h2 class="section-title reveal"><span class="accent mono">05.</span> Skills</h2>
+      <div class="skills-grid">
+
+        <div class="skill-category reveal">
+          <h3 class="skill-category-title"><i class="fa fa-code"></i> Programming Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag" data-level="95">Python</span>
+            <span class="skill-tag" data-level="85">JavaScript</span>
+            <span class="skill-tag" data-level="85">SQL</span>
+            <span class="skill-tag" data-level="80">Java</span>
+            <span class="skill-tag" data-level="75">C/C++</span>
+            <span class="skill-tag" data-level="90">HTML/CSS</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <h3 class="skill-category-title"><i class="fa fa-cogs"></i> Frameworks &amp; Technologies</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Angular</span>
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Unity</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <h3 class="skill-category-title"><i class="fa fa-database"></i> Databases</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">AWS DynamoDB</span>
+            <span class="skill-tag">Microsoft SQL Server</span>
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MySQL</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <h3 class="skill-category-title"><i class="fa fa-lightbulb-o"></i> Specialization</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Information Retrieval and Distribution</span>
+            <span class="skill-tag">Agile Development &amp; Scrum</span>
+            <span class="skill-tag">Software Architecture &amp; Software Design</span>
+          </div>
+        </div>
+
+        <div class="skill-category reveal">
+          <h3 class="skill-category-title"><i class="fa fa-wrench"></i> Toolsets</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Visual Studio</span>
+            <span class="skill-tag">Eclipse</span>
+            <span class="skill-tag">IntelliJ IDEA</span>
+            <span class="skill-tag">PyCharm</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Awards ===== -->
+  <section id="awards" class="section">
+    <div class="container">
+      <h2 class="section-title reveal"><span class="accent mono">06.</span> Awards</h2>
+      <div class="awards-list">
+
+        <div class="award-item reveal">
+          <div class="award-icon"><i class="fa fa-trophy"></i></div>
+          <div class="award-content">
+            <h3>Benjamin A. Gilman International Scholarship &amp; Critical Language Scholarship</h3>
+            <span class="award-year mono">2019</span>
+          </div>
+        </div>
+
+        <div class="award-item reveal">
+          <div class="award-icon"><i class="fa fa-trophy"></i></div>
+          <div class="award-content">
+            <h3>2<sup>nd</sup> Place - Language Flagship Technology Innovation Center - Flagship Hackathon</h3>
+            <span class="award-year mono">2018</span>
+          </div>
+        </div>
+
+        <div class="award-item reveal">
+          <div class="award-icon"><i class="fa fa-trophy"></i></div>
+          <div class="award-content">
+            <h3>Green Ideas Best Team Award &amp; Green Ideas Innovator Award - Language Flagship Technology Innovation Center</h3>
+            <span class="award-year mono">2018</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <p class="mono">Designed &amp; Built by Leon Qu</p>
+    </div>
+  </footer>
+
+  <script src="js/portfolio.js"></script>
+</body>
 </html>
