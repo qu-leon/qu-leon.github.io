@@ -20,6 +20,8 @@
       canvas.height = window.innerHeight;
     }
 
+    canvas.style.pointerEvents = 'none';
+
     function createParticles() {
       particles = [];
       for (let i = 0; i < PARTICLE_COUNT; i++) {
