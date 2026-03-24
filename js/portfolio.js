@@ -109,11 +109,11 @@
   const typedEl = document.getElementById('typed-output');
   if (typedEl) {
     const phrases = [
-      'Machine Learning Engineer',
-      'Data Science & Automation',
-      'Software Developer',
-      'Semiconductor Manufacturing',
-      'Python / SQL / JavaScript',
+      'Machine Learning',
+      'Data Science',
+      'Software Engineering',
+      'Semiconductor Manufacturing Automation',
+      'Tech Enthusiast',
     ];
     let phraseIdx = 0;
     let charIdx = 0;
