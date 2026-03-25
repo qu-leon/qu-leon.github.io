@@ -5,106 +5,122 @@
 (function () {
   'use strict';
 
-  // ---- Neural Network Canvas Background ----
+  // ---- Shooting Stars Canvas Background ----
   const canvas = document.getElementById('neural-canvas');
   if (canvas) {
     const ctx = canvas.getContext('2d');
-    let particles = [];
-    let animFrame;
-    const PARTICLE_COUNT = 80;
-    const CONNECTION_DIST = 150;
-    let mouse = { x: -1000, y: -1000 };
+    let stars = [];
+    let shootingStars = [];
+    const STAR_COUNT = 200;
+    const MAX_SHOOTING = 3;
+    let spawnTimer = 0;
+
+    canvas.style.pointerEvents = 'none';
 
     function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
 
-    canvas.style.pointerEvents = 'none';
-
-    function createParticles() {
-      particles = [];
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        particles.push({
+    function createStars() {
+      stars = [];
+      for (var i = 0; i < STAR_COUNT; i++) {
+        stars.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.6,
-          vy: (Math.random() - 0.5) * 0.6,
-          r: Math.random() * 2 + 1,
+          r: Math.random() * 1.5 + 0.3,
+          baseAlpha: Math.random() * 0.5 + 0.3,
+          twinkleSpeed: Math.random() * 0.02 + 0.005,
+          phase: Math.random() * Math.PI * 2
         });
       }
     }
 
-    function drawParticles() {
+    function spawnShootingStar() {
+      var startX = Math.random() * canvas.width * 1.2;
+      var startY = Math.random() * canvas.height * 0.5;
+      var angle = (Math.random() * 30 + 20) * Math.PI / 180;
+      var speed = Math.random() * 8 + 6;
+      shootingStars.push({
+        x: startX,
+        y: startY,
+        vx: -Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        life: 1,
+        decay: Math.random() * 0.012 + 0.008,
+        len: Math.random() * 60 + 40,
+        width: Math.random() * 1.5 + 0.5,
+        hue: Math.random() > 0.5 ? 187 : 260
+      });
+    }
+
+    function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw connections
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < CONNECTION_DIST) {
-            const opacity = (1 - dist / CONNECTION_DIST) * 0.15;
-            ctx.strokeStyle = 'rgba(6, 182, 212, ' + opacity + ')';
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-
-        // Mouse connections
-        const mdx = particles[i].x - mouse.x;
-        const mdy = particles[i].y - mouse.y;
-        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (mdist < 200) {
-          const opacity = (1 - mdist / 200) * 0.4;
-          ctx.strokeStyle = 'rgba(139, 92, 246, ' + opacity + ')';
-          ctx.lineWidth = 1;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.stroke();
-        }
+      // Draw twinkling stars
+      var time = Date.now() * 0.001;
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        var alpha = s.baseAlpha + Math.sin(time * s.twinkleSpeed * 60 + s.phase) * 0.25;
+        if (alpha < 0.05) alpha = 0.05;
+        ctx.fillStyle = 'rgba(200, 220, 255, ' + alpha + ')';
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
       }
 
-      // Draw particles
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
-        ctx.fillStyle = 'rgba(6, 182, 212, 0.6)';
+      // Spawn shooting stars
+      spawnTimer++;
+      if (spawnTimer > 60 + Math.random() * 120 && shootingStars.length < MAX_SHOOTING) {
+        spawnShootingStar();
+        spawnTimer = 0;
+      }
+
+      // Draw shooting stars
+      for (var j = shootingStars.length - 1; j >= 0; j--) {
+        var ss = shootingStars[j];
+        var tailX = ss.x - ss.vx / Math.sqrt(ss.vx * ss.vx + ss.vy * ss.vy) * ss.len;
+        var tailY = ss.y - ss.vy / Math.sqrt(ss.vx * ss.vx + ss.vy * ss.vy) * ss.len;
+
+        var grad = ctx.createLinearGradient(ss.x, ss.y, tailX, tailY);
+        grad.addColorStop(0, 'hsla(' + ss.hue + ', 80%, 75%, ' + ss.life + ')');
+        grad.addColorStop(0.4, 'hsla(' + ss.hue + ', 80%, 65%, ' + (ss.life * 0.5) + ')');
+        grad.addColorStop(1, 'hsla(' + ss.hue + ', 80%, 50%, 0)');
+
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = ss.width;
+        ctx.lineCap = 'round';
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.moveTo(ss.x, ss.y);
+        ctx.lineTo(tailX, tailY);
+        ctx.stroke();
+
+        // Bright head glow
+        ctx.fillStyle = 'hsla(' + ss.hue + ', 90%, 85%, ' + ss.life + ')';
+        ctx.beginPath();
+        ctx.arc(ss.x, ss.y, ss.width + 0.5, 0, Math.PI * 2);
         ctx.fill();
 
-        // Update position
-        p.x += p.vx;
-        p.y += p.vy;
+        ss.x += ss.vx;
+        ss.y += ss.vy;
+        ss.life -= ss.decay;
 
-        // Wrap around edges
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
+        if (ss.life <= 0 || ss.x < -100 || ss.y > canvas.height + 100) {
+          shootingStars.splice(j, 1);
+        }
       }
 
-      animFrame = requestAnimationFrame(drawParticles);
+      requestAnimationFrame(draw);
     }
 
     window.addEventListener('resize', function () {
       resize();
-      createParticles();
-    });
-
-    document.addEventListener('mousemove', function (e) {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      createStars();
     });
 
     resize();
-    createParticles();
-    drawParticles();
+    createStars();
+    draw();
   }
 
   // ---- Typing Effect ----
