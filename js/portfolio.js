@@ -181,126 +181,158 @@
   if (heroContent) {
     var heroTl = gsap.timeline({ delay: 0.3 });
     heroTl
-      .from('.hero-greeting', { opacity: 0, y: 20, duration: 0.6, ease: 'power3.out' })
-      .from('.hero-name', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, '-=0.3')
-      .from('.hero-typing-wrapper', { opacity: 0, y: 20, duration: 0.5, ease: 'power3.out' }, '-=0.3')
-      .from('.hero-bio', { opacity: 0, y: 20, duration: 0.5, stagger: 0.15, ease: 'power3.out' }, '-=0.2')
-      .from('.hero-location', { opacity: 0, y: 15, duration: 0.4, ease: 'power3.out' }, '-=0.2')
-      .from('.social-btn', { opacity: 0, y: 15, scale: 0.8, duration: 0.4, stagger: 0.1, ease: 'back.out(1.7)' }, '-=0.2')
-      .from('.scroll-indicator', { opacity: 0, y: -10, duration: 0.5, ease: 'power2.out' }, '-=0.1');
+      .fromTo('.hero-greeting', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' })
+      .fromTo('.hero-name', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, '-=0.3')
+      .fromTo('.hero-typing-wrapper', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out' }, '-=0.3')
+      .fromTo('.hero-bio', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, ease: 'power3.out' }, '-=0.2')
+      .fromTo('.hero-location', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, '-=0.2')
+      .fromTo('.social-btn', { opacity: 0, y: 15, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, stagger: 0.1, ease: 'back.out(1.7)' }, '-=0.2')
+      .fromTo('.scroll-indicator', { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.1');
   }
 
   // ---- Section Title Animations ----
   gsap.utils.toArray('.section-title').forEach(function (title) {
-    gsap.from(title, {
-      scrollTrigger: {
-        trigger: title,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-      },
-      opacity: 0,
-      x: -40,
-      duration: 0.8,
-      ease: 'power3.out'
-    });
+    gsap.fromTo(title,
+      { opacity: 0, x: -40 },
+      {
+        scrollTrigger: {
+          trigger: title,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        x: 0,
+        duration: 0.8,
+        ease: 'power3.out'
+      }
+    );
   });
 
   // ---- Project Cards — staggered grid reveal ----
-  ScrollTrigger.batch('.project-card', {
-    start: 'top 88%',
-    onEnter: function (batch) {
-      gsap.from(batch, {
-        opacity: 0,
-        y: 50,
-        scale: 0.95,
+  gsap.utils.toArray('.project-card').forEach(function (card, i) {
+    gsap.fromTo(card,
+      { opacity: 0, y: 50, scale: 0.95 },
+      {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 92%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
         duration: 0.7,
-        stagger: 0.12,
+        delay: i % 3 * 0.12,
         ease: 'power3.out'
-      });
-    },
-    once: true
+      }
+    );
   });
 
   // ---- Timeline Items — slide in from left with line draw ----
   gsap.utils.toArray('.timeline-item').forEach(function (item, i) {
-    var tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: item,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
+    var marker = item.querySelector('.timeline-marker');
+    var content = item.querySelector('.timeline-content');
+
+    gsap.fromTo(marker,
+      { scale: 0 },
+      {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        },
+        scale: 1,
+        duration: 0.4,
+        ease: 'back.out(2)'
       }
-    });
-    tl.from(item.querySelector('.timeline-marker'), {
-      scale: 0,
-      duration: 0.4,
-      ease: 'back.out(2)'
-    })
-    .from(item.querySelector('.timeline-content'), {
-      opacity: 0,
-      x: -40,
-      duration: 0.6,
-      ease: 'power3.out'
-    }, '-=0.2');
+    );
+
+    gsap.fromTo(content,
+      { opacity: 0, x: -40 },
+      {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        x: 0,
+        duration: 0.6,
+        delay: 0.15,
+        ease: 'power3.out'
+      }
+    );
   });
 
   // ---- Education Cards — pop in ----
-  ScrollTrigger.batch('.edu-card', {
-    start: 'top 88%',
-    onEnter: function (batch) {
-      gsap.from(batch, {
-        opacity: 0,
-        y: 40,
-        scale: 0.9,
+  gsap.utils.toArray('.edu-card').forEach(function (card, i) {
+    gsap.fromTo(card,
+      { opacity: 0, y: 40, scale: 0.9 },
+      {
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 92%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        y: 0,
+        scale: 1,
         duration: 0.6,
-        stagger: 0.15,
+        delay: i * 0.15,
         ease: 'back.out(1.4)'
-      });
-    },
-    once: true
+      }
+    );
   });
 
   // ---- Skill Categories — staggered fade up ----
-  ScrollTrigger.batch('.skill-category', {
-    start: 'top 88%',
-    onEnter: function (batch) {
-      gsap.from(batch, {
-        opacity: 0,
-        y: 40,
+  gsap.utils.toArray('.skill-category').forEach(function (cat, i) {
+    gsap.fromTo(cat,
+      { opacity: 0, y: 40 },
+      {
+        scrollTrigger: {
+          trigger: cat,
+          start: 'top 92%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        y: 0,
         duration: 0.6,
-        stagger: 0.1,
+        delay: i % 3 * 0.1,
         ease: 'power3.out',
         onComplete: function () {
-          // After category appears, animate its tags
-          batch.forEach(function (cat) {
-            gsap.from(cat.querySelectorAll('.skill-tag'), {
-              opacity: 0,
-              scale: 0.7,
-              y: 10,
+          gsap.fromTo(cat.querySelectorAll('.skill-tag'),
+            { opacity: 0, scale: 0.7, y: 10 },
+            {
+              opacity: 1,
+              scale: 1,
+              y: 0,
               duration: 0.3,
               stagger: 0.04,
               ease: 'back.out(1.7)'
-            });
-          });
+            }
+          );
         }
-      });
-    },
-    once: true
+      }
+    );
   });
 
   // ---- Award Items — slide in from right ----
   gsap.utils.toArray('.award-item').forEach(function (item, i) {
-    gsap.from(item, {
-      scrollTrigger: {
-        trigger: item,
-        start: 'top 88%',
-        toggleActions: 'play none none none'
-      },
-      opacity: 0,
-      x: 60,
-      duration: 0.6,
-      delay: i * 0.1,
-      ease: 'power3.out'
-    });
+    gsap.fromTo(item,
+      { opacity: 0, x: 60 },
+      {
+        scrollTrigger: {
+          trigger: item,
+          start: 'top 92%',
+          toggleActions: 'play none none none'
+        },
+        opacity: 1,
+        x: 0,
+        duration: 0.6,
+        delay: i * 0.1,
+        ease: 'power3.out'
+      }
+    );
   });
 
   // ---- Parallax on Section Titles ----
@@ -407,16 +439,19 @@
   });
 
   // ---- Footer reveal ----
-  gsap.from('.footer', {
-    scrollTrigger: {
-      trigger: '.footer',
-      start: 'top 95%',
-      toggleActions: 'play none none none'
-    },
-    opacity: 0,
-    y: 20,
-    duration: 0.6,
-    ease: 'power3.out'
-  });
+  gsap.fromTo('.footer',
+    { opacity: 0, y: 20 },
+    {
+      scrollTrigger: {
+        trigger: '.footer',
+        start: 'top 95%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 1,
+      y: 0,
+      duration: 0.6,
+      ease: 'power3.out'
+    }
+  );
 
 })();
