@@ -11,8 +11,8 @@
     const ctx = canvas.getContext('2d');
     let stars = [];
     let shootingStars = [];
-    const STAR_COUNT = 200;
-    const MAX_SHOOTING = 3;
+    const STAR_COUNT = 250;
+    const MAX_SHOOTING = 6;
     let spawnTimer = 0;
 
     canvas.style.pointerEvents = 'none';
@@ -28,8 +28,8 @@
         stars.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          r: Math.random() * 1.5 + 0.3,
-          baseAlpha: Math.random() * 0.5 + 0.3,
+          r: Math.random() * 2.2 + 0.5,
+          baseAlpha: Math.random() * 0.5 + 0.35,
           twinkleSpeed: Math.random() * 0.02 + 0.005,
           phase: Math.random() * Math.PI * 2
         });
@@ -47,9 +47,9 @@
         vx: -Math.cos(angle) * speed,
         vy: Math.sin(angle) * speed,
         life: 1,
-        decay: Math.random() * 0.012 + 0.008,
-        len: Math.random() * 60 + 40,
-        width: Math.random() * 1.5 + 0.5,
+        decay: Math.random() * 0.006 + 0.004,
+        len: Math.random() * 120 + 80,
+        width: Math.random() * 2.5 + 1.2,
         hue: Math.random() > 0.5 ? 187 : 260
       });
     }
@@ -71,7 +71,7 @@
 
       // Spawn shooting stars
       spawnTimer++;
-      if (spawnTimer > 60 + Math.random() * 120 && shootingStars.length < MAX_SHOOTING) {
+      if (spawnTimer > 30 + Math.random() * 50 && shootingStars.length < MAX_SHOOTING) {
         spawnShootingStar();
         spawnTimer = 0;
       }
@@ -83,8 +83,9 @@
         var tailY = ss.y - ss.vy / Math.sqrt(ss.vx * ss.vx + ss.vy * ss.vy) * ss.len;
 
         var grad = ctx.createLinearGradient(ss.x, ss.y, tailX, tailY);
-        grad.addColorStop(0, 'hsla(' + ss.hue + ', 80%, 75%, ' + ss.life + ')');
-        grad.addColorStop(0.4, 'hsla(' + ss.hue + ', 80%, 65%, ' + (ss.life * 0.5) + ')');
+        grad.addColorStop(0, 'hsla(' + ss.hue + ', 90%, 85%, ' + ss.life + ')');
+        grad.addColorStop(0.3, 'hsla(' + ss.hue + ', 85%, 70%, ' + (ss.life * 0.7) + ')');
+        grad.addColorStop(0.7, 'hsla(' + ss.hue + ', 80%, 60%, ' + (ss.life * 0.3) + ')');
         grad.addColorStop(1, 'hsla(' + ss.hue + ', 80%, 50%, 0)');
 
         ctx.strokeStyle = grad;
@@ -95,10 +96,16 @@
         ctx.lineTo(tailX, tailY);
         ctx.stroke();
 
-        // Bright head glow
-        ctx.fillStyle = 'hsla(' + ss.hue + ', 90%, 85%, ' + ss.life + ')';
+        // Outer glow
+        ctx.fillStyle = 'hsla(' + ss.hue + ', 80%, 70%, ' + (ss.life * 0.3) + ')';
         ctx.beginPath();
-        ctx.arc(ss.x, ss.y, ss.width + 0.5, 0, Math.PI * 2);
+        ctx.arc(ss.x, ss.y, ss.width + 4, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Bright head glow
+        ctx.fillStyle = 'hsla(' + ss.hue + ', 95%, 90%, ' + ss.life + ')';
+        ctx.beginPath();
+        ctx.arc(ss.x, ss.y, ss.width + 1, 0, Math.PI * 2);
         ctx.fill();
 
         ss.x += ss.vx;
