@@ -173,56 +173,182 @@
     setTimeout(typeLoop, 1000);
   }
 
-  // ---- Scroll Reveal ----
-  const reveals = document.querySelectorAll('.reveal');
-  const revealObserver = new IntersectionObserver(
-    function (entries) {
-      entries.forEach(function (entry, idx) {
-        if (entry.isIntersecting) {
-          // Stagger siblings
-          var siblings = entry.target.parentElement.querySelectorAll('.reveal');
-          var index = Array.prototype.indexOf.call(siblings, entry.target);
-          var delay = index * 100;
-          setTimeout(function () {
-            entry.target.classList.add('visible');
-          }, delay);
-          revealObserver.unobserve(entry.target);
+  // ---- GSAP + ScrollTrigger Setup ----
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ---- Hero Content Entrance ----
+  var heroContent = document.querySelector('.hero-content');
+  if (heroContent) {
+    var heroTl = gsap.timeline({ delay: 0.3 });
+    heroTl
+      .from('.hero-greeting', { opacity: 0, y: 20, duration: 0.6, ease: 'power3.out' })
+      .from('.hero-name', { opacity: 0, y: 30, duration: 0.8, ease: 'power3.out' }, '-=0.3')
+      .from('.hero-typing-wrapper', { opacity: 0, y: 20, duration: 0.5, ease: 'power3.out' }, '-=0.3')
+      .from('.hero-bio', { opacity: 0, y: 20, duration: 0.5, stagger: 0.15, ease: 'power3.out' }, '-=0.2')
+      .from('.hero-location', { opacity: 0, y: 15, duration: 0.4, ease: 'power3.out' }, '-=0.2')
+      .from('.social-btn', { opacity: 0, y: 15, scale: 0.8, duration: 0.4, stagger: 0.1, ease: 'back.out(1.7)' }, '-=0.2')
+      .from('.scroll-indicator', { opacity: 0, y: -10, duration: 0.5, ease: 'power2.out' }, '-=0.1');
+  }
+
+  // ---- Section Title Animations ----
+  gsap.utils.toArray('.section-title').forEach(function (title) {
+    gsap.from(title, {
+      scrollTrigger: {
+        trigger: title,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 0,
+      x: -40,
+      duration: 0.8,
+      ease: 'power3.out'
+    });
+  });
+
+  // ---- Project Cards — staggered grid reveal ----
+  ScrollTrigger.batch('.project-card', {
+    start: 'top 88%',
+    onEnter: function (batch) {
+      gsap.from(batch, {
+        opacity: 0,
+        y: 50,
+        scale: 0.95,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: 'power3.out'
+      });
+    },
+    once: true
+  });
+
+  // ---- Timeline Items — slide in from left with line draw ----
+  gsap.utils.toArray('.timeline-item').forEach(function (item, i) {
+    var tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: item,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+    tl.from(item.querySelector('.timeline-marker'), {
+      scale: 0,
+      duration: 0.4,
+      ease: 'back.out(2)'
+    })
+    .from(item.querySelector('.timeline-content'), {
+      opacity: 0,
+      x: -40,
+      duration: 0.6,
+      ease: 'power3.out'
+    }, '-=0.2');
+  });
+
+  // ---- Education Cards — pop in ----
+  ScrollTrigger.batch('.edu-card', {
+    start: 'top 88%',
+    onEnter: function (batch) {
+      gsap.from(batch, {
+        opacity: 0,
+        y: 40,
+        scale: 0.9,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: 'back.out(1.4)'
+      });
+    },
+    once: true
+  });
+
+  // ---- Skill Categories — staggered fade up ----
+  ScrollTrigger.batch('.skill-category', {
+    start: 'top 88%',
+    onEnter: function (batch) {
+      gsap.from(batch, {
+        opacity: 0,
+        y: 40,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power3.out',
+        onComplete: function () {
+          // After category appears, animate its tags
+          batch.forEach(function (cat) {
+            gsap.from(cat.querySelectorAll('.skill-tag'), {
+              opacity: 0,
+              scale: 0.7,
+              y: 10,
+              duration: 0.3,
+              stagger: 0.04,
+              ease: 'back.out(1.7)'
+            });
+          });
         }
       });
     },
-    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-  );
-
-  reveals.forEach(function (el) {
-    revealObserver.observe(el);
+    once: true
   });
 
-  // ---- Navbar Scroll Effect ----
+  // ---- Award Items — slide in from right ----
+  gsap.utils.toArray('.award-item').forEach(function (item, i) {
+    gsap.from(item, {
+      scrollTrigger: {
+        trigger: item,
+        start: 'top 88%',
+        toggleActions: 'play none none none'
+      },
+      opacity: 0,
+      x: 60,
+      duration: 0.6,
+      delay: i * 0.1,
+      ease: 'power3.out'
+    });
+  });
+
+  // ---- Parallax on Section Titles ----
+  gsap.utils.toArray('.section-title').forEach(function (title) {
+    gsap.to(title, {
+      scrollTrigger: {
+        trigger: title,
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1
+      },
+      y: -20,
+      ease: 'none'
+    });
+  });
+
+  // ---- Navbar Scroll Effect (GSAP) ----
   var navbar = document.getElementById('navbar');
   var navLinks = document.querySelectorAll('.nav-link');
   var sections = document.querySelectorAll('.section');
 
-  window.addEventListener('scroll', function () {
-    // Background on scroll
-    if (window.scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+  ScrollTrigger.create({
+    start: 50,
+    onUpdate: function (self) {
+      if (self.scroll() > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     }
+  });
 
-    // Active section highlighting
-    var scrollPos = window.scrollY + 150;
-    sections.forEach(function (section) {
-      var top = section.offsetTop;
-      var height = section.offsetHeight;
-      var id = section.getAttribute('id');
-      if (scrollPos >= top && scrollPos < top + height) {
-        navLinks.forEach(function (link) {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === '#' + id) {
-            link.classList.add('active');
-          }
-        });
+  // Active section highlighting via ScrollTrigger
+  sections.forEach(function (section) {
+    ScrollTrigger.create({
+      trigger: section,
+      start: 'top center',
+      end: 'bottom center',
+      onToggle: function (self) {
+        if (self.isActive) {
+          var id = section.getAttribute('id');
+          navLinks.forEach(function (link) {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + id) {
+              link.classList.add('active');
+            }
+          });
+        }
       }
     });
   });
@@ -234,7 +360,11 @@
       var targetId = this.getAttribute('href');
       var target = document.querySelector(targetId);
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
+        gsap.to(window, {
+          scrollTo: { y: target, offsetY: 0 },
+          duration: 1,
+          ease: 'power2.inOut'
+        });
       }
       // Close mobile menu
       var navList = document.querySelector('.nav-links');
@@ -255,15 +385,38 @@
     });
   }
 
-  // ---- Skill Tag Glow on Hover (interactive pulse) ----
+  // ---- Skill Tag Hover (GSAP) ----
   var skillTags = document.querySelectorAll('.skill-tag');
   skillTags.forEach(function (tag) {
     tag.addEventListener('mouseenter', function () {
-      this.style.boxShadow = '0 0 20px ' + 'rgba(6, 182, 212, 0.4)';
+      gsap.to(this, {
+        scale: 1.08,
+        boxShadow: '0 0 20px rgba(6, 182, 212, 0.4)',
+        duration: 0.25,
+        ease: 'power2.out'
+      });
     });
     tag.addEventListener('mouseleave', function () {
-      this.style.boxShadow = '';
+      gsap.to(this, {
+        scale: 1,
+        boxShadow: 'none',
+        duration: 0.25,
+        ease: 'power2.out'
+      });
     });
+  });
+
+  // ---- Footer reveal ----
+  gsap.from('.footer', {
+    scrollTrigger: {
+      trigger: '.footer',
+      start: 'top 95%',
+      toggleActions: 'play none none none'
+    },
+    opacity: 0,
+    y: 20,
+    duration: 0.6,
+    ease: 'power3.out'
   });
 
 })();

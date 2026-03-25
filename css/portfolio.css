@@ -97,18 +97,7 @@ a:hover {
   margin-right: 0.5rem;
 }
 
-/* --- Reveal Animations --- */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+/* --- GSAP handles all reveal animations --- */
 
 /* --- Navigation --- */
 #navbar {
