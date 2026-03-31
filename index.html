@@ -14,7 +14,7 @@
   <!-- Font Awesome -->
   <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   <!-- Custom styles -->
-  <link href="css/portfolio.css?v=2" rel="stylesheet">
+  <link href="css/portfolio.css?v=3" rel="stylesheet">
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-106150954-2"></script>
@@ -48,6 +48,7 @@
 
   <!-- ===== Hero / About ===== -->
   <section id="about" class="section hero-section">
+    <div class="hero-inner">
     <div class="hero-content reveal">
       <p class="hero-greeting mono">Hello, I'm</p>
       <h1 class="hero-name">Leon <span class="accent">Qu</span></h1>
@@ -72,6 +73,11 @@
           <i class="fa fa-github"></i>
         </a>
       </div>
+    </div>
+    <div class="hero-image-wrapper">
+      <div class="hero-image-ring"></div>
+      <img src="img/profile1.png" alt="Leon Qu" class="hero-image" />
+    </div>
     </div>
     <div class="scroll-indicator">
       <div class="mouse">
@@ -104,6 +110,25 @@
             <li>Numpy</li>
             <li>Pandas</li>
             <li>BeautifulSoup</li>
+          </ul>
+        </div>
+
+        <!-- BLISS -->
+        <div class="project-card reveal" data-project="bliss">
+          <div class="project-card-header">
+            <div class="project-icon"><i class="fa fa-folder-open"></i></div>
+            <div class="project-links">
+              <span class="project-tag">Automation</span>
+            </div>
+          </div>
+          <h3 class="project-title">BLISS</h3>
+          <p class="project-desc">Python script that helps to track the processing of wafers in the factory where a group of wafers may be split out for different processing experiments.</p>
+          <p class="project-desc">After implementation, the script significantly improved tracking efficiency and reduced manual errors in finding which wafers were part of which experiments.</p>
+          <ul class="project-tech">
+            <li>Python</li>
+            <li>Intel PyUber</li>
+            <li>Numpy</li>
+            <li>Pandas</li>
           </ul>
         </div>
 
@@ -434,6 +459,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
 
-  <script src="js/portfolio.js?v=4"></script>
+  <script src="js/portfolio.js?v=6"></script>
 </body>
 </html>

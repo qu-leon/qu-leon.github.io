@@ -187,6 +187,7 @@
       .fromTo('.hero-bio', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.15, ease: 'power3.out' }, '-=0.2')
       .fromTo('.hero-location', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4, ease: 'power3.out' }, '-=0.2')
       .fromTo('.social-btn', { opacity: 0, y: 15, scale: 0.8 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, stagger: 0.1, ease: 'back.out(1.7)' }, '-=0.2')
+      .fromTo('.hero-image-wrapper', { opacity: 0, scale: 0.8, rotate: -8 }, { opacity: 1, scale: 1, rotate: 0, duration: 1, ease: 'elastic.out(1, 0.5)' }, '-=1.5')
       .fromTo('.scroll-indicator', { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, '-=0.1');
   }
 
@@ -197,12 +198,12 @@
       {
         scrollTrigger: {
           trigger: title,
-          start: 'top 90%',
+          start: 'top 95%',
           toggleActions: 'play none none none'
         },
         opacity: 1,
         x: 0,
-        duration: 0.8,
+        duration: 0.5,
         ease: 'power3.out'
       }
     );
@@ -211,18 +212,18 @@
   // ---- Project Cards — staggered grid reveal ----
   gsap.utils.toArray('.project-card').forEach(function (card, i) {
     gsap.fromTo(card,
-      { opacity: 0, y: 50, scale: 0.95 },
+      { opacity: 0, y: 30, scale: 0.97 },
       {
         scrollTrigger: {
           trigger: card,
-          start: 'top 92%',
+          start: 'top 95%',
           toggleActions: 'play none none none'
         },
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.7,
-        delay: i % 3 * 0.12,
+        duration: 0.4,
+        delay: i % 3 * 0.06,
         ease: 'power3.out'
       }
     );
@@ -238,27 +239,27 @@
       {
         scrollTrigger: {
           trigger: item,
-          start: 'top 90%',
+          start: 'top 95%',
           toggleActions: 'play none none none'
         },
         scale: 1,
-        duration: 0.4,
+        duration: 0.25,
         ease: 'back.out(2)'
       }
     );
 
     gsap.fromTo(content,
-      { opacity: 0, x: -40 },
+      { opacity: 0, x: -25 },
       {
         scrollTrigger: {
           trigger: item,
-          start: 'top 90%',
+          start: 'top 95%',
           toggleActions: 'play none none none'
         },
         opacity: 1,
         x: 0,
-        duration: 0.6,
-        delay: 0.15,
+        duration: 0.35,
+        delay: 0.05,
         ease: 'power3.out'
       }
     );
@@ -267,18 +268,18 @@
   // ---- Education Cards — pop in ----
   gsap.utils.toArray('.edu-card').forEach(function (card, i) {
     gsap.fromTo(card,
-      { opacity: 0, y: 40, scale: 0.9 },
+      { opacity: 0, y: 25, scale: 0.95 },
       {
         scrollTrigger: {
           trigger: card,
-          start: 'top 92%',
+          start: 'top 95%',
           toggleActions: 'play none none none'
         },
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 0.6,
-        delay: i * 0.15,
+        duration: 0.35,
+        delay: i * 0.08,
         ease: 'back.out(1.4)'
       }
     );
@@ -287,27 +288,27 @@
   // ---- Skill Categories — staggered fade up ----
   gsap.utils.toArray('.skill-category').forEach(function (cat, i) {
     gsap.fromTo(cat,
-      { opacity: 0, y: 40 },
+      { opacity: 0, y: 25 },
       {
         scrollTrigger: {
           trigger: cat,
-          start: 'top 92%',
+          start: 'top 95%',
           toggleActions: 'play none none none'
         },
         opacity: 1,
         y: 0,
-        duration: 0.6,
-        delay: i % 3 * 0.1,
+        duration: 0.35,
+        delay: i % 3 * 0.05,
         ease: 'power3.out',
         onComplete: function () {
           gsap.fromTo(cat.querySelectorAll('.skill-tag'),
-            { opacity: 0, scale: 0.7, y: 10 },
+            { opacity: 0, scale: 0.8, y: 6 },
             {
               opacity: 1,
               scale: 1,
               y: 0,
-              duration: 0.3,
-              stagger: 0.04,
+              duration: 0.2,
+              stagger: 0.02,
               ease: 'back.out(1.7)'
             }
           );
@@ -319,17 +320,17 @@
   // ---- Award Items — slide in from right ----
   gsap.utils.toArray('.award-item').forEach(function (item, i) {
     gsap.fromTo(item,
-      { opacity: 0, x: 60 },
+      { opacity: 0, x: 35 },
       {
         scrollTrigger: {
           trigger: item,
-          start: 'top 92%',
+          start: 'top 95%',
           toggleActions: 'play none none none'
         },
         opacity: 1,
         x: 0,
-        duration: 0.6,
-        delay: i * 0.1,
+        duration: 0.35,
+        delay: i * 0.05,
         ease: 'power3.out'
       }
     );
