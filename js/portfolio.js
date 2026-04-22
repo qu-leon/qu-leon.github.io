@@ -11,6 +11,7 @@
     const ctx = canvas.getContext('2d');
     let stars = [];
     let shootingStars = [];
+    let visitorRockets = [];
     const STAR_COUNT = 250;
     const MAX_SHOOTING = 6;
     let spawnTimer = 0;
@@ -52,6 +53,100 @@
         width: Math.random() * 2.5 + 1.2,
         hue: Math.random() > 0.5 ? 187 : 260
       });
+    }
+
+    function spawnVisitorRocket(originX, originY) {
+      var direction = Math.random() > 0.5 ? 1 : -1;
+      var amplitude = Math.random() * 110 + 90;
+      var travelX = (Math.random() * 0.3 + 0.42) * canvas.width * direction;
+      var travelY = -(Math.random() * 180 + 180);
+
+      visitorRockets.push({
+        startX: originX,
+        startY: originY,
+        controlX: originX + travelX * 0.45,
+        controlY: originY + travelY - amplitude,
+        endX: originX + travelX,
+        endY: originY + travelY,
+        progress: 0,
+        speed: Math.random() * 0.006 + 0.008,
+        size: Math.random() * 8 + 30,
+        hue: Math.random() > 0.5 ? 187 : 260,
+        drift: Math.random() * 14 + 10,
+        exhaust: []
+      });
+    }
+
+    function getQuadraticPoint(rocket) {
+      var t = rocket.progress;
+      var inv = 1 - t;
+
+      return {
+        x: inv * inv * rocket.startX + 2 * inv * t * rocket.controlX + t * t * rocket.endX,
+        y: inv * inv * rocket.startY + 2 * inv * t * rocket.controlY + t * t * rocket.endY
+      };
+    }
+
+    function drawVisitorRocket(rocket, index) {
+      var point = getQuadraticPoint(rocket);
+      var prevT = rocket.progress > 0.035 ? rocket.progress - 0.035 : 0;
+      var prevPoint;
+      var dx;
+      var dy;
+      var angle;
+
+      rocket.exhaust.push({ x: point.x, y: point.y, alpha: 0.62 + (1 - rocket.progress) * 0.28 });
+      if (rocket.exhaust.length > 26) rocket.exhaust.shift();
+
+      for (var e = rocket.exhaust.length - 1; e >= 0; e--) {
+        var particle = rocket.exhaust[e];
+        particle.alpha -= 0.02;
+        particle.y += 0.35;
+        if (particle.alpha <= 0) {
+          rocket.exhaust.splice(e, 1);
+          continue;
+        }
+
+        ctx.fillStyle = 'hsla(' + rocket.hue + ', 95%, 72%, ' + particle.alpha + ')';
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, 3.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      prevPoint = getQuadraticPoint({
+        startX: rocket.startX,
+        startY: rocket.startY,
+        controlX: rocket.controlX,
+        controlY: rocket.controlY,
+        endX: rocket.endX,
+        endY: rocket.endY,
+        progress: prevT
+      });
+
+      dx = point.x - prevPoint.x;
+      dy = point.y - prevPoint.y;
+      angle = Math.atan2(dy, dx);
+
+      ctx.save();
+      ctx.translate(point.x, point.y);
+      // Emoji rocket naturally points diagonally up-right, so offset rotation accordingly.
+      ctx.rotate(angle - Math.PI / 4);
+
+      ctx.shadowBlur = 28;
+      ctx.shadowColor = 'hsla(' + rocket.hue + ', 92%, 72%, 0.72)';
+      ctx.globalAlpha = 0.98;
+
+      ctx.font = rocket.size + 'px "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('🚀', 0, 0);
+
+      ctx.restore();
+
+      rocket.progress += rocket.speed;
+      if (rocket.progress >= 1.02) {
+        visitorRockets.splice(index, 1);
+      }
     }
 
     function draw() {
@@ -117,8 +212,39 @@
         }
       }
 
+      for (var k = visitorRockets.length - 1; k >= 0; k--) {
+        drawVisitorRocket(visitorRockets[k], k);
+      }
+
       requestAnimationFrame(draw);
     }
+
+    var rocketButtons = document.querySelectorAll('.section-rocket');
+    rocketButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        var rect = button.getBoundingClientRect();
+        var originX = rect.left + rect.width * 0.5;
+        var originY = rect.top + rect.height * 0.5;
+
+        spawnVisitorRocket(originX, originY);
+        button.classList.add('is-launched');
+
+        if (window.gsap) {
+          gsap.fromTo(button.querySelector('.section-rocket-icon'),
+            { rotate: 0, y: 0, scale: 1 },
+            { rotate: 20, y: -5, scale: 1.08, duration: 0.16, yoyo: true, repeat: 1, ease: 'power2.out' }
+          );
+          gsap.fromTo(button,
+            { scale: 1 },
+            { scale: 1.06, duration: 0.18, yoyo: true, repeat: 1, ease: 'power2.out' }
+          );
+        }
+
+        window.setTimeout(function () {
+          button.classList.remove('is-launched');
+        }, 900);
+      });
+    });
 
     window.addEventListener('resize', function () {
       resize();
@@ -337,10 +463,10 @@
   });
 
   // ---- Parallax on Section Titles ----
-  gsap.utils.toArray('.section-title').forEach(function (title) {
-    gsap.to(title, {
+  gsap.utils.toArray('.section-title-text').forEach(function (titleText) {
+    gsap.to(titleText, {
       scrollTrigger: {
-        trigger: title,
+        trigger: titleText.closest('.section-title'),
         start: 'top bottom',
         end: 'bottom top',
         scrub: 1

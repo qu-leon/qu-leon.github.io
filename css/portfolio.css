@@ -92,6 +92,80 @@ a:hover {
   letter-spacing: -0.02em;
 }
 
+.section-title-text {
+  display: inline-block;
+}
+
+.section-rocket {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-left: 0.65rem;
+  padding: 0.25rem 0.6rem 0.25rem 0.3rem;
+  border: 1px solid rgba(6, 182, 212, 0.28);
+  border-radius: 999px;
+  background: rgba(8, 18, 34, 0.82);
+  box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.28);
+  cursor: pointer;
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
+  animation: rocketPulse 2.6s ease-in-out infinite;
+}
+
+.section-rocket:hover,
+.section-rocket:focus-visible {
+  transform: translateY(-2px) scale(1.03);
+  border-color: rgba(139, 92, 246, 0.5);
+  background: rgba(10, 21, 40, 0.95);
+  box-shadow: 0 0 24px rgba(6, 182, 212, 0.24);
+  outline: none;
+}
+
+.section-rocket:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.section-rocket.is-launched {
+  animation: none;
+  box-shadow: 0 0 28px rgba(139, 92, 246, 0.28);
+}
+
+.section-rocket-icon {
+  display: inline-block;
+  font-size: 1.1rem;
+  transform-origin: center;
+}
+
+.section-rocket-hint {
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.section-rocket::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 0.55rem;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.55);
+  transform: translateY(-50%);
+}
+
+@keyframes rocketPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.14);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(6, 182, 212, 0);
+  }
+}
+
 .section-title .mono {
   font-size: 1.2rem;
   margin-right: 0.5rem;
@@ -862,6 +936,17 @@ a:hover {
 
   .section-title {
     font-size: 1.5rem;
+  }
+
+  .section-rocket {
+    gap: 0.35rem;
+    margin-left: 0.45rem;
+    padding: 0.2rem 0.5rem 0.2rem 0.25rem;
+  }
+
+  .section-rocket-hint {
+    font-size: 0.56rem;
+    letter-spacing: 0.12em;
   }
 
   .project-card,
