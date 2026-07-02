@@ -471,13 +471,17 @@ a:hover {
 }
 
 .project-card {
+  display: block;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 2rem;
+  color: inherit;
+  text-decoration: none;
   transition: all var(--transition);
   position: relative;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .project-card::before {
@@ -492,15 +496,22 @@ a:hover {
   transition: opacity var(--transition);
 }
 
-.project-card:hover {
+.project-card:hover,
+.project-card:focus-visible {
   background: var(--bg-card-hover);
   border-color: var(--border-hover);
   transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
-.project-card:hover::before {
+.project-card:hover::before,
+.project-card:focus-visible::before {
   opacity: 1;
+}
+
+.project-card:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .project-card-header {
@@ -515,6 +526,14 @@ a:hover {
   color: var(--accent);
 }
 
+.project-links {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .project-tag {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -524,6 +543,25 @@ a:hover {
   color: var(--accent);
   text-transform: uppercase;
   letter-spacing: 0.05em;
+}
+
+.project-github {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-primary);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity var(--transition), transform var(--transition), color var(--transition);
+}
+
+.project-card:hover .project-github,
+.project-card:focus-visible .project-github {
+  color: var(--accent);
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .project-title {
